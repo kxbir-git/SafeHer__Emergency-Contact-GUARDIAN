@@ -27,9 +27,13 @@ SafeHer is a comprehensive, production-grade personal safety and emergency respo
 
 ---
 
-## 🎨 Live UI Template & Core Screen Previews
+## 🎨 Live UI Screen Clips & Interface Previews
 
 ### 1. Main Safety Command Dashboard (`/`)
+![SafeHer Dashboard UI Screen Clip](docs/screenshots/dashboard_preview.jpg)
+
+*Features: 3-Second Hold-to-Send Circular SOS Engine, Real-time status cards for AI scream detection & shake anomaly, 1-touch emergency speed dials for Police (112), Women Helpline (1091), and Ambulance (102).*
+
 ```
 +----------------------------------------------------------------------------------------------------+
 | [ SafeHer Shield ]       ● System Protected   GPS: 28.6139° N, 77.2090° E       [ Aanya Sharma (O+) ]|
@@ -56,7 +60,13 @@ SafeHer is a comprehensive, production-grade personal safety and emergency respo
 +----------------------------------------------------------------------------------------------------+
 ```
 
+---
+
 ### 2. Live Map & Safe Route Telemetry (`/map`)
+![SafeHer Live Radar Map UI Screen Clip](docs/screenshots/livemap_preview.jpg)
+
+*Features: Live GPS position tracking, OpenStreetMap danger zones (unlit roads, past harassment reports), verified green safe corridors, and 1-click reachable emergency police stations and hospitals.*
+
 ```
 +----------------------------------------------------------------------------------------------------+
 | 🗺 LIVE DANGER ZONE & EMERGENCY AMENITY RADAR                                                      |
@@ -76,7 +86,13 @@ SafeHer is a comprehensive, production-grade personal safety and emergency respo
 +----------------------------------------------------------------------------------------------------+
 ```
 
+---
+
 ### 3. Escape Simulator — Authentic Incoming Call Modal
+![SafeHer Escape Fake Call Screen Clip](docs/screenshots/fakecall_preview.jpg)
+
+*Features: Disguised escape tool generating realistic incoming phone call overlays with vibration, authentic ringtone synthesis, and configurable delays (Instant, 10s, 30s) to safely exit uncomfortable situations.*
+
 ```
 +---------------------------------------------------+
 |               [ INCOMING CALL ]                   |
