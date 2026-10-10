@@ -22,7 +22,8 @@ export const useAuthStore = create((set, get) => ({
       });
       return { success: true };
     } catch (err) {
-      const errorMsg = err.response?.data?.detail || 'Invalid email or password';
+      console.error("Login Error:", err);
+      const errorMsg = err.response?.data?.detail || err.message || 'Invalid email or password';
       set({ error: errorMsg, loading: false });
       return { success: false, error: errorMsg };
     }

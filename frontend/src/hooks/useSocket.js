@@ -9,9 +9,23 @@ export const useSocket = () => {
 
   useEffect(() => {
     const connect = () => {
-      // Protocol dynamic based on current host
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const wsUrl = `${protocol}//${window.location.host}/ws/alerts`;
+      // Protocol dynamic based on current host or environment variable
+      let wsUrl;
+      if (import.meta.env.VITE_WS_URL) {
+        wsUrl = `${import.meta.env.VITE_WS_URL.replace(/\/$/, '')}/ws/alerts`;
+      } else if (import.meta.env.VITE_API_URL) {
+        try {
+          const parsed = new URL(import.meta.env.VITE_API_URL);
+          const proto = parsed.protocol === 'https:' ? 'wss:' : 'ws:';
+          wsUrl = `${proto}//${parsed.host}/ws/alerts`;
+        } catch {
+          const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+          wsUrl = `${protocol}//${window.location.host}/ws/alerts`;
+        }
+      } else {
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        wsUrl = `${protocol}//${window.location.host}/ws/alerts`;
+      }
 
       try {
         const ws = new WebSocket(wsUrl);

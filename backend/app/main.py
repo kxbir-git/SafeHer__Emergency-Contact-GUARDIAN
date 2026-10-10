@@ -8,10 +8,11 @@ from app.routers import auth, users, contacts, alerts, locations, incidents, ai,
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
 
 # CORS setup
-origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(',')]
+origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(',') if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
