@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+backend/venv/
+venv/
+*/venv/
+
+# Environment Variables
+*.env
+!.env.example
+backend/.env
+
+# Build outputs
+frontend/dist/
+dist/
+build/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Database & local data
+*.db
+*.sqlite
+*.sqlite3
+backend/safeher.db
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
