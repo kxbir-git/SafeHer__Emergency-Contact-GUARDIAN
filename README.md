@@ -1,31 +1,94 @@
 # SafeHer — AI-Based Women's Safety App with Real-Time Alert System
 
+[![React](https://img.shields.io/badge/Frontend-React%2018%20%2B%20Vite-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI%20%2B%20Uvicorn-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![TailwindCSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Machine Learning](https://img.shields.io/badge/AI%2FML-Scikit--Learn%20%2B%20Librosa-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 SafeHer is a comprehensive, production-grade personal safety and emergency response web application designed for women. It combines real-time multi-channel dispatch, offline-capable AI distress classification, live GPS route telemetry, and escape tools into a unified, calm, and restrained interface.
 
 ---
 
-## 1. System Architecture
+## 📺 Live Test Video & Interactive Demonstration
 
+> **Live Demo Video:** [Click to Watch SafeHer Live System Walkthrough](docs/demo.mp4)  
+> *(Test recording of 3-Second SOS activation, AI scream background detection, simulated fake call escape, and live guardian tracking)*
+
+### Quick Video Walkthrough Breakdown:
+| Timestamp | Demonstrated Safety Module | Real-World Scenario |
+|:---:|:---|:---|
+| **00:00 - 00:25** | **Authentication & Seeded Profile** | Login with pre-configured emergency contacts & medical blood group |
+| **00:26 - 00:50** | **3-Second SOS Engine** | Hold-to-activate circular SVG ring preventing false alarms |
+| **00:51 - 01:20** | **Live GPS Telemetry & Hazards** | Real-time OpenStreetMap tracking with high-risk corridor overlays |
+| **01:21 - 01:45** | **AI Distress & Acoustic Trigger** | Continuous acoustic feature extraction listening for distress screams |
+| **01:46 - 02:10** | **Escape Simulator (Fake Call)** | Realistic incoming phone call overlay with ringtone to deter stalkers |
+| **02:11 - 02:30** | **Multi-Channel Dispatch** | Instantaneous WebSocket broadcast & Twilio emergency SMS dispatches |
+
+---
+
+## 🎨 Live UI Template & Core Screen Previews
+
+### 1. Main Safety Command Dashboard (`/`)
 ```
-SafeHer Platform
-├── Frontend (React 18 + Vite + Tailwind CSS + Leaflet + Zustand)
-│   ├── SOS Engine (3-second circular progress hold to prevent accidental triggers)
-│   ├── Live OpenStreetMap Telemetry (Leaflet GPS tracking, ward & alert markers)
-│   ├── AI Sensory Hooks (useVoiceTrigger for keywords, useShake for DeviceMotion)
-│   ├── Safe Route & Incident Map (Crowdsourced hazard reporting & safety index)
-│   └── Escape Simulator (Authentic scheduled fake incoming call)
-│
-├── Backend (FastAPI + Python 3.11 + SQLAlchemy + WebSockets + Pydantic v2)
-│   ├── /api/auth & /api/users (JWT authentication & emergency profiles)
-│   ├── /api/alerts (Multi-channel dispatch: WebSockets + Twilio SMS)
-│   ├── /api/locations (Live location streaming & guardian tracking)
-│   ├── /api/incidents (Geographic hazard reporting & proximity queries)
-│   └── /ws/alerts (Real-time bi-directional WebSocket broadcast channel)
-│
-└── AI & Machine Learning Pipeline
-    ├── Acoustic Distress Classifier (librosa feature extraction: 40 MFCCs, Spectral Centroid, ZCR, RMS)
-    ├── Scikit-Learn GradientBoostingClassifier (Pre-trained / self-generating offline model)
-    └── Motion Anomaly Detector (Rolling Z-score statistics on 3-axis accelerometer readings)
++----------------------------------------------------------------------------------------------------+
+| [ SafeHer Shield ]       ● System Protected   GPS: 28.6139° N, 77.2090° E       [ Aanya Sharma (O+) ]|
++----------------------------------------------------------------------------------------------------+
+| [ Sidebar ]  |                                                                                     |
+|              |   +-------------------------------------------------------------------------------+ |
+| 🛡 Dashboard |   |                              EMERGENCY SOS ENGINE                             | |
+| 🗺 Live Map   |   |                                                                               | |
+| 👥 Contacts  |   |                           ((((  [   SOS   ]  ))))                             | |
+| 📋 Reports   |   |                             [ HOLD 3 SECONDS ]                                | |
+| 📜 History   |   |                                                                               | |
+| ⚙ Settings   |   |      Status: Ready ● Guard Contacts: 3 Synced ● GPS: Precise (Accuracy: 12m)   | |
+|              |   +-------------------------------------------------------------------------------+ |
+| [ Escape ]   |                                                                                     |
+| 📞 Fake Call |   +---------------------------------------+ +-------------------------------------+ |
+|              |   | 🎙 AI Scream & Audio Distress Engine   | | 📳 Shake & Physical Shock Anomaly    | |
+|              |   | Status: Active Background Monitoring  | | Threshold: Z-score > 3.0 (Armed)     | |
+|              |   | [ Toggle Sensitivity: Medium ]        | | [ Status: Calibrated ]              | |
+|              |   +---------------------------------------+ +-------------------------------------+ |
+|              |                                                                                     |
+|              |   +-------------------------------------------------------------------------------+ |
+|              |   | ⚡ QUICK RESCUE SPEED-DIAL:  [ Police 112 ]   [ Women Helpline 1091 ]  [ Ambulance 102 ] |
+|              |   +-------------------------------------------------------------------------------+ |
++----------------------------------------------------------------------------------------------------+
+```
+
+### 2. Live Map & Safe Route Telemetry (`/map`)
+```
++----------------------------------------------------------------------------------------------------+
+| 🗺 LIVE DANGER ZONE & EMERGENCY AMENITY RADAR                                                      |
+| Destination Safe Route: [ Connaught Place, New Delhi                 ] [ Search Safe Corridor ]    |
+|                                                                                                    |
+|  [=========================== LEAFLET INTERACTIVE RADAR ========================================]   |
+|  |                                                                                              |   |
+|  |       [🚨 Stalking Reported (2h ago)]                      [ 🚓 Connaught Place Police ]     |   |
+|  |                 \                                                        /                   |   |
+|  |                  \                                                      /                    |   |
+|  |                   ====== RECOMMENDED SAFE ROUTE (WELL-LIT) ============                      |   |
+|  |                                          /                                                   |   |
+|  |                         [ 📍 You Are Here ]                                                  |   |
+|  |                                                                                              |   |
+|  [==============================================================================================]   |
+|  Legend: 🔴 Recent Hazard Report (Avoid)   🟢 Verified Corridor (Monitored)   🔵 24/7 Police Station|
++----------------------------------------------------------------------------------------------------+
+```
+
+### 3. Escape Simulator — Authentic Incoming Call Modal
+```
++---------------------------------------------------+
+|               [ INCOMING CALL ]                   |
+|                                                   |
+|                      ( 👤 )                       |
+|                    Mom (Home)                     |
+|                 +91 98765 00000                   |
+|                                                   |
+|             "Ringing with vibration..."           |
+|                                                   |
+|        [ 🔴 Decline ]           [ 🟢 Answer ]     |
++---------------------------------------------------+
 ```
 
 ---
