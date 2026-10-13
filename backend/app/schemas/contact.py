@@ -1,10 +1,10 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
 class ContactBase(BaseModel):
     name: str
     phone: str
-    email: Optional[EmailStr] = None
+    email: Optional[str] = ""
     relation: str = "Family"
     is_guardian: bool = False
 
@@ -14,7 +14,7 @@ class ContactCreate(ContactBase):
 class ContactUpdate(BaseModel):
     name: Optional[str] = None
     phone: Optional[str] = None
-    email: Optional[EmailStr] = None
+    email: Optional[str] = None
     relation: Optional[str] = None
     is_guardian: Optional[bool] = None
 
@@ -22,5 +22,5 @@ class ContactResponse(ContactBase):
     id: int
     user_id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
+

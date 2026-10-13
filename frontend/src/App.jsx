@@ -14,6 +14,7 @@ import { Contacts } from './pages/Contacts';
 import { Reports } from './pages/Reports';
 import { History } from './pages/History';
 import { Settings } from './pages/Settings';
+import { LiveTrackPage } from './pages/LiveTrackPage';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }) => {
@@ -47,6 +48,9 @@ export const App = () => {
           path="/signup"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Signup />}
         />
+
+        {/* Public Live Tracking Page (no login required for guardians) */}
+        <Route path="/track" element={<LiveTrackPage />} />
 
         {/* Protected Dashboard & App Routes */}
         <Route

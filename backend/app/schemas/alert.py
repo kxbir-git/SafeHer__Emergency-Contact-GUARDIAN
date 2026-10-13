@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, Any, Dict
 from datetime import datetime
 
@@ -22,8 +22,8 @@ class AlertResponse(BaseModel):
     user_name: Optional[str] = None
     user_phone: Optional[str] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class AlertStatusUpdate(BaseModel):
     status: str
+

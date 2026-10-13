@@ -27,9 +27,15 @@ export const useAlertStore = create((set, get) => ({
     try {
       const data = await alertsApi.getHistory();
       set({ alerts: data, loading: false });
-      // Check if any alert is still active/triggered
-      const active = data.find((a) => a.status === 'triggered' || a.status === 'acknowledged');
-      if (active) set({ activeAlert: active });
+      // Only show an active alert banner if it was created recently (within 30 min)
+      // This prevents old stale alerts from showing as an emergency on every page load
+      const thirtyMinAgo = Date.now() - 30 * 60 * 1000;
+      const active = data.find((a) => {
+        if (a.status !== 'triggered' && a.status !== 'acknowledged') return false;
+        const createdAt = new Date(a.created_at).getTime();
+        return createdAt > thirtyMinAgo;
+      });
+      set({ activeAlert: active || null });
     } catch (err) {
       set({ loading: false });
     }

@@ -352,12 +352,22 @@ export const Dashboard = () => {
       </div>
 
       {/* Confirmation Modal when Alert is Dispatched */}
-      <AlertModal
-        alert={lastDispatchedAlert}
-        contactsCount={contacts.length || 3}
-        onClose={() => setShowAlertModal(false)}
-        onResolve={resolveAlert}
-      />
+      {showAlertModal && (
+        <AlertModal
+          alert={lastDispatchedAlert}
+          contacts={contacts}
+          user={user}
+          onClose={() => {
+            setShowAlertModal(false);
+            setLastDispatchedAlert(null);
+          }}
+          onResolve={async (alertId) => {
+            await resolveAlert(alertId);
+            setShowAlertModal(false);
+            setLastDispatchedAlert(null);
+          }}
+        />
+      )}
     </div>
   );
 };

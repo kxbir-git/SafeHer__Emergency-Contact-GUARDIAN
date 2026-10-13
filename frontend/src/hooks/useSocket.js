@@ -27,6 +27,11 @@ export const useSocket = () => {
         wsUrl = `${protocol}//${window.location.host}/ws/alerts`;
       }
 
+      const token = localStorage.getItem('safeher_token');
+      if (token) {
+        wsUrl += `?token=${encodeURIComponent(token)}`;
+      }
+
       try {
         const ws = new WebSocket(wsUrl);
         socketRef.current = ws;

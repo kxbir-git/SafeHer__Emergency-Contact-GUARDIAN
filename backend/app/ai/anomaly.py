@@ -53,14 +53,20 @@ class MotionAnomalyDetector:
         anomalous_points = sum(1 for z in z_scores if abs(z) >= self.z_threshold)
         max_z_score = max(abs(z) for z in z_scores)
 
+        max_mag = max(magnitudes)
         # Check for sustained shock or violent rapid shake (e.g. struggle or shake-to-alert)
+        # In small window buffers (10-30 samples), max statistical Z-score is mathematically bounded by sqrt(N).
+        # A physical anomaly is detected when acceleration exceeds 2.5g (~24.5 m/s²) with deviation,
+        # or when sustained points exceed the Z-score threshold.
         is_anomaly = (
             (anomalous_points >= self.min_sustained_points) or 
-            (max_z_score > 4.5 and max(magnitudes) > 25.0)  # Significant sudden impact/shake > 2.5g
+            (max_mag >= 24.5 and max_z_score >= 1.2) or
+            (max_mag >= 35.0)
         )
 
         # Normalize score into a bounded confidence 0.0 - 1.0
-        normalized_score = min(max_z_score / 6.0, 1.0)
+        normalized_score = min(max(max_z_score / 3.0, (max_mag - 9.8) / 30.0), 1.0)
+        normalized_score = max(normalized_score, 0.0)
 
         return {
             "anomaly": bool(is_anomaly),

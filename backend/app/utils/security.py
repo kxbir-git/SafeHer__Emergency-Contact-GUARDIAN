@@ -6,6 +6,11 @@ except ImportError:
     import jwt
     class JWTError(Exception):
         pass
+
+import bcrypt
+if not hasattr(bcrypt, "__about__"):
+    bcrypt.__about__ = type("about", (), {"__version__": bcrypt.__version__})
+
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
